@@ -3,14 +3,18 @@ jobs:
   build:
     docker:
     - image: circleci/ruby:2.4.1-node-browsers
-    
+
     steps:
       - checkout
-      
+
+      - run:
+          name: Build Dependencied
+          command: bundle install
+
       - run: 
-          name: greeting
-          command: echo Hello, World.
-        
+          name: Bundle the jekyll site
+          command: bundle exec jekyll build
+
       - run:
           name: print the date time
           command: date
